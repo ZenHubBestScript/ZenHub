@@ -2189,7 +2189,7 @@ end)
 --// Fast Attack
 local AttackList = {"Slow", "Default", "Fast", "Super Fast (Risk)"}
 _G.FastAttackDelay = "Default"
-AutoMisc2:Dropdown("Fast Attack Mode", AttackList, function(adl)
+Main:Dropdown("Fast Attack Mode", AttackList, function(adl)
     _G.FastAttackDelay = adl
 end)
 spawn(function()
@@ -2211,7 +2211,7 @@ spawn(function()
 end)
 
 _G.FastAttack = true
-AutoMisc2:Toggle('Fast Attack', _G.FastAttack, function(famobile)
+Main:Toggle('Fast Attack', _G.FastAttack, function(famobile)
     _G.FastAttack = famobile
 end)
 
