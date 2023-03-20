@@ -1,3 +1,5 @@
+
+
 _G.Settings = {
   UI = {
     Color = Color3.fromRGB(255, 255, 255),
@@ -195,30 +197,9 @@ close.Image = "http://www.roblox.com/asset/?id=3926305904"
 close.ImageRectOffset = Vector2.new(284, 4)
 close.ImageRectSize = Vector2.new(24, 24)
 close.ImageColor3 = Color3.fromRGB(255, 255, 255)
-close.MouseLeave:Connect(function()
-  Utility:TweenObject(close, {
-    BackgroundTransparency = 1
-  }, 0.1)
-  end)
-
-close.MouseEnter:Connect(function()
-  Utility:TweenObject(close, {
-    BackgroundTransparency = 0.5
-  }, 0.1)
-  end)
-
 close.MouseButton1Click:Connect(function()
-  game.TweenService:Create(close, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
-    ImageTransparency = 1
-  }):Play()
-  wait()
-  game.TweenService:Create(Main, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-    Size = UDim2.new(0,0,0,0),
-    Position = UDim2.new(0, Main.AbsolutePosition.X + (Main.AbsoluteSize.X / 2), 0, Main.AbsolutePosition.Y + (Main.AbsoluteSize.Y / 2))
-  }):Play()
-  wait(1)
-  ScreenGui1:Destroy()
-  ScreenGui:Destroy()
+  game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
+  game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
 end)
 
 mainDiscord.Name = "mainDiscord"
@@ -265,32 +246,6 @@ osday.TextColor3 = Color3.fromRGB(255, 255, 255)
 osday.TextSize = 17.000
 osday.Text = ""
 osday.TextXAlignment = Enum.TextXAlignment.Left
-
-
-local BindButton = Instance.new("TextButton")
-BindButton.Name = "BindButton"
-BindButton.Parent = Top
-BindButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-BindButton.BackgroundTransparency = 1.000
-BindButton.Position = UDim2.new(0, 550, 0, 0)
-BindButton.Size = UDim2.new(0, 100, 0, 27)
-BindButton.Font = Enum.Font.GothamSemibold
-BindButton.Text = ""
-BindButton.TextColor3 = Color3.fromRGB(103, 103, 103)
-BindButton.TextSize = 11.000
-
-BindButton.MouseButton1Click:Connect(function ()
-  BindButton.Text = "[ ... ]"
-  local inputwait = game:GetService("UserInputService").InputBegan:wait()
-  local shiba = inputwait.KeyCode == Enum.KeyCode.Unknown and inputwait.UserInputType or inputwait.KeyCode
-
-  if
-    shiba.Name ~= "Focus" and shiba.Name ~= "MouseMovement" and shiba.Name ~= "Focus"
-  then
-  BindButton.Text = "[ "..shiba.Name.." ]"
-  yoo = shiba.Name
-  end
-  end)
 
 
 local Tab = Instance.new("Frame")
@@ -1757,25 +1712,25 @@ end
 return Ui
 end
 local ScreenGui1 = Instance.new("ScreenGui")
-local ImageButton = Instance.new("ImageButton")
+local ImageButton1 = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 
 ScreenGui1.Name = "ImageButton"
 ScreenGui1.Parent = game.CoreGui
 ScreenGui1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-ImageButton.Parent = ScreenGui1
-ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
-ImageButton.Size = UDim2.new(0, 50, 0, 50)
-ImageButton.Draggable = true
-ImageButton.Image = "http://www.roblox.com/asset/?id="..(LogoUI)
-ImageButton.MouseButton1Down:connect(function()
+ImageButton1.Parent = ScreenGui1
+ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ImageButton1.BorderSizePixel = 0
+ImageButton1.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+ImageButton1.Size = UDim2.new(0, 50, 0, 50)
+ImageButton1.Draggable = true
+ImageButton1.Image = "http://www.roblox.com/asset/?id="..(LogoUI)
+ImageButton1.MouseButton1Down:connect(function()
   game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
   game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
-  end)
-UICorner.Parent = ImageButton
+end)
+UICorner.Parent = ImageButton1
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- End Of library
@@ -1857,8 +1812,8 @@ local Dungeon1 = PP:AddTab({
   LogoTab = "11446957539"
 })
 
-local Raid = Dungeon1:AddPage()
-local BossedRaid = Dungeon1:AddPage()
+local Dungeon = Dungeon1:AddPage()
+local Dungeon2 = Dungeon1:AddPage()
 
 local DevilFruit1 = PP:AddTab({
   LogoTab = "11446965348"
@@ -1896,35 +1851,6 @@ Main:Slider("Speed Hack", 0, 150, 150, function(speed)
   end)
 
 Main:Slider("Jump Hack", 0, 150, 150, function(jump)
-  game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = jump
-  end)
-
-local GC = getconnections or get_signal_cons
-if GC then
-for i,v in pairs(GC(game.Players.LocalPlayer.Idled)) do
-if v["Disable"] then
-v["Disable"](v)
-elseif v["Disconnect"] then
-v["Disconnect"](v)
-end
-end
-else
-  print("Unlucky.")
-local vu = game:GetService("VirtualUser")
-game:GetService("Players").LocalPlayer.Idled:connect(function()
-  vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-  wait(1)
-  vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-  end)
-end
-
---// Setting Player
-
-Main:Slider("Speed Hack", 1, 150, 150, function(speed)
-  game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = speed
-  end)
-
-Main:Slider("Jump Hack", 1, 150, 150, function(jump)
   game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = jump
   end)
 
@@ -9386,170 +9312,504 @@ end
         end
         StopTween(_G.TeleportNPC)
     end)
-    
-    Raid:Seperator("Auto Raid")
---// Raid
-Chips = {"Flame","Ice","Quake","Light","Dark","String","Rumble","Magma","Human: Buddha","Sand","Bird: Phoenix","Dough"}
 
-Raid:Dropdown('Select Raid',Chips, function(selchipf)
-    SelectChip = selchipf
-end)
+if First_Sea then
+    Dungeon:Label("Do Not Dungeon World First 1")
+end
 
-Raid:Button("Buy Special Microchip", function()
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("RaidsNpc","Select",SelectChip)
-end)
+if Second_Sea or Third_Sea then
+    local TimeRaid = Dungeon:Label("Waiting For Dungeon.....")
 
-Raid:Button("Start Raid",function()
-    if Second_Sea then
-        fireclickdetector(Workspace.Map.CircleIsland.RaidSummon2.Button.Main.ClickDetector)
-    elseif Third_Sea then
-        fireclickdetector(Workspace.Map["Boat Castle"].RaidSummon2.Button.Main.ClickDetector)
-    end
-end)
-
-Raid:Toggle('Kill Aura', KillAura, function(killauraf)
-    KillAura = killauraf
-end)
-spawn(function()
-    while wait() do
-        if KillAura then
-            pcall(function()
-                for i,v in pairs(game.Workspace.Enemies:GetDescendants()) do
-                    if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                        repeat task.wait()
-                            sethiddenproperty(game:GetService('Players').LocalPlayer,"SimulationRadius",math.huge)
-                            v.Humanoid.Health = 0
-                            v.HumanoidRootPart.CanCollide = false
-                        until not AutoDungeon or not v.Parent or v.Humanoid.Health <= 0
-                    end
+    spawn(function()
+        pcall(function()
+            while wait() do
+                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Timer.Visible == true then
+                    TimeRaid:Set(game:GetService("Players").LocalPlayer.PlayerGui.Main.Timer.Text)
+                else
+                    TimeRaid:UpdateLabel("Wait For Dungeon")
                 end
-            end)
-        end
-    end
-end)
+            end
+        end)
+    end)
 
-Raid:Toggle('Auto Dungeon', AutoDungeon, function(autodungefunc)
-    AutoDungeon = autodungefunc
-    CancelTween(AutoDungeon)
-end)
-spawn(function()
-    pcall(function()
-        while wait() do
-            if AutoDungeon then
-                if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
-                    for i,v in pairs(game.Workspace.Enemies:GetDescendants()) do
-                        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                            pcall(function()
-                                repeat task.wait()
-                                    sethiddenproperty(game:GetService('Players').LocalPlayer,"SimulationRadius",math.huge)
-                                    v.Humanoid.Health = 0
-                                    v.HumanoidRootPart.CanCollide = false
-                                until not AutoDungeon or not v.Parent or v.Humanoid.Health <= 0
-                            end)
+    Dungeon:Toggle("Auto Farm Dungeon",_G.Auto_Dungeon,function(value)
+        _G.Auto_Dungeon = value
+        StopTween(_G.Auto_Dungeon)
+    end)
+    
+    spawn(function()
+        pcall(function() 
+            while wait() do
+                if _G.Auto_Dungeon then
+                    if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+                            if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                pcall(function()
+                                    repeat wait()
+                                        sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                        v.Humanoid.Health = 0
+                                        v.HumanoidRootPart.CanCollide = false
+                                    until not _G.Auto_Dungeon or not v.Parent or v.Humanoid.Health <= 0
+                                end)
+                            end
                         end
                     end
                 end
             end
-        end
+        end)
     end)
-end)
-
-Raid:Toggle( "Auto Awaken", AutoAwakenAbilities, function(value)
-    AutoAwakenAbilities = value
-end)
-
-spawn(function()
-    while task.wait() do
-        if AutoAwakenAbilities then
-            pcall(function()
-                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Awakener","Awaken")
-            end)
-        end
-    end
-end)
-
-Raid:Toggle('Auto Next Island',false, function(autonextislandfunc)
-    AutoNextIsland = autonextislandfunc
-    CancelTween(AutoNextIsland)
-end)
-spawn(function()
-    while task.wait() do
-        if AutoNextIsland then
-            pcall(function()
-                if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
-                    if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5") then
-                        Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").CFrame * CFrame.new(0,70,100))
-                    elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4") then
-                        Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").CFrame * CFrame.new(0,70,100))
-                    elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3") then
-                        Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").CFrame * CFrame.new(0,70,100))
-                    elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2") then
-                        Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").CFrame * CFrame.new(0,70,100))
-                    elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") then
-                        Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").CFrame * CFrame.new(0,70,100))
+    
+    spawn(function()
+        pcall(function()
+            while wait() do
+                if _G.Auto_Dungeon then
+                  if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
+                        if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5") then
+                            TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").CFrame*CFrame.new(0,80,100))
+                        elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4") then
+                            TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").CFrame*CFrame.new(0,80,100))
+                        elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3") then
+                            TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").CFrame*CFrame.new(0,80,100))
+                        elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2") then
+                            TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").CFrame*CFrame.new(0,80,100))
+                        elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") then
+                            TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").CFrame*CFrame.new(0,80,100))
+                        end
                     end
                 end
-            end)
-        end
-    end
+            end
+        end)
+    end)
+
+Dungeon:Toggle("Auto Farm Kill Mob",_G.Raid,function(kill)
+    _G.Raid = kill
+    StopTween(_G.Raid)
+ end)
+
+  spawn(function()
+     pcall(function() 
+     while wait() do
+          if _G.Raid then
+              for i,v in pairs(game.Workspace.Enemies:GetDescendants()) do
+                  if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                     Pos = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                     if Pos <= 1000 then 
+                     pcall(function()
+                          repeat wait()
+                              v.HumanoidRootPart.CanCollide = false
+                              v.HumanoidRootPart.Size = Vector3.new(120,120,120)
+                              v.HumanoidRootPart.Transparency = 1
+                              v.Humanoid.WalkSpeed = 0
+                              v.Humanoid.JumpPower = 0 
+                              EquipWeapon(_G.SelectWeapon)
+                              TPDOUN(v.HumanoidRootPart.Position,v.HumanoidRootPart.CFrame*CFrame.new(0,45,0))
+                             game:GetService'VirtualUser':CaptureController()
+                             game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+                          until not _G.Raid or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1")
+                      end)
+                     end
+                 else
+                     if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5") then
+                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ã Â¸Ë†Ã Â¸Â¸Ã Â¸â€Ã Â¸â€”Ã Â¸ÂµÃ Â¹Ë†Ã Â¸Ë†Ã Â¸Â°Ã Â¹â€žÃ Â¸â€º Position Only
+                         Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
+                         tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
+                         tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").CFrame*CFrame.new(0,20,0)})
+                         tween:Play()
+                     elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4") then
+                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ã Â¸Ë†Ã Â¸Â¸Ã Â¸â€Ã Â¸â€”Ã Â¸ÂµÃ Â¹Ë†Ã Â¸Ë†Ã Â¸Â°Ã Â¹â€žÃ Â¸â€º Position Only
+                         Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
+                         tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
+                         tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").CFrame*CFrame.new(0,20,0)})
+                         tween:Play()
+                     elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3") then
+                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ã Â¸Ë†Ã Â¸Â¸Ã Â¸â€Ã Â¸â€”Ã Â¸ÂµÃ Â¹Ë†Ã Â¸Ë†Ã Â¸Â°Ã Â¹â€žÃ Â¸â€º Position Only
+                         Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
+                         tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
+                         tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").CFrame*CFrame.new(0,20,0)})
+                         tween:Play()
+                     elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2") then
+                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ã Â¸Ë†Ã Â¸Â¸Ã Â¸â€Ã Â¸â€”Ã Â¸ÂµÃ Â¹Ë†Ã Â¸Ë†Ã Â¸Â°Ã Â¹â€žÃ Â¸â€º Position Only
+                         Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
+                         tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
+                         tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").CFrame*CFrame.new(0,20,0)})
+                         tween:Play()
+                     elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") then
+                         Distance = (game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- Ã Â¸Ë†Ã Â¸Â¸Ã Â¸â€Ã Â¸â€”Ã Â¸ÂµÃ Â¹Ë†Ã Â¸Ë†Ã Â¸Â°Ã Â¹â€žÃ Â¸â€º Position Only
+                         Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
+                         tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
+                         tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").CFrame*CFrame.new(0,20,0)})
+                         tween:Play()
+                     else
+                      if Second_Sea then                        
+                              Lab2 = Vector3.new(-6438.73535, 250.645355, -4501.50684)
+                              local Distance = (Lab2 - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                              local Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
+                              tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
+                              tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(-6438.73535, 250.645355, -4501.50684)})
+                              tween:Play()
+                              _G.Clip = true
+                              wait(Distance/Speed)   
+                              _G.Clip = false                
+                      end
+                      if Third_Sea then                        
+                              Lab3 = Vector3.new(-5017.40869, 314.844055, -2823.0127, -0.925743818, 4.48217499e-08, -0.378151238, 4.55503146e-09, 1, 1.07377559e-07, 0.378151238, 9.7681621e-08, -0.925743818)
+                              local Distance = (Lab3 - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                              local Speed = 150 -- Ã Â¸â€žÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¹â‚¬Ã Â¸Â£Ã Â¹â€¡Ã Â¸Â§Ã Â¸â€šÃ Â¸Â­Ã Â¸â€¡Ã Â¸Â¡Ã Â¸Â¶Ã Â¸â€¡
+                              tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Cubic)
+                              tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = CFrame.new(-5017.40869, 314.844055, -2823.0127, -0.925743818, 4.48217499e-08, -0.378151238, 4.55503146e-09, 1, 1.07377559e-07, 0.378151238, 9.7681621e-08, -0.925743818)})
+                              tween:Play() 
+                              _G.Clip = true
+                              wait(Distance/Speed)   
+                              _G.Clip = false    
+                     end        
+                   end       
+                 end
+              end
+          end
+      end
+     end)
+  end)
+
+    Dungeon:Toggle("Kill Aura",_G.KillAura,function(vu)
+   _G.KillAura = vu
 end)
 
-BossedRaid:Seperator("Law Boss Raid")
-
---// Boss Raid
-BossedRaid:Button("Buy Law Microchip",function()
-    if game:GetService("ReplicatedStorage"):FindFirstChild("Order [Lv. 1250] [Raid Boss]") then
-        local args = {
-            [1] = "BlackbeardReward",
-            [2] = "Microchip",
-            [3] = "2"
-        }
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-    else
-        Library:Notification("System.!", "Boss Raid is not Spawned... \nThanks.")
-    end
+spawn(function()
+  pcall(function() 
+  while wait() do
+       if _G.KillAura then
+           for i,v in pairs(game.Workspace.Enemies:GetDescendants()) do
+               if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                   pcall(function()
+                       repeat wait()
+                           sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                           v.Humanoid.Health = 0
+                           v.HumanoidRootPart.CanCollide = false
+                           v.HumanoidRootPart.Size = Vector3.new(80,80,80)
+                           v.HumanoidRootPart.Transparency = 1
+                       until not _G.KillAura or not v.Parent or v.Humanoid.Health <= 0
+                   end)
+               end
+           end
+       end
+   end
+  end)
 end)
 
-BossedRaid:Button("Start Law Boss Raid", function()
-    if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Microchip") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Microchip") then
-		fireclickdetector(game:GetService("Workspace").Map.CircleIsland.RaidSummon.Button.Main.ClickDetector)
+Dungeon:Toggle("Auto Raid",_G.Auto_Raid,function(vu)
+	_G.Auto_Raid = vu
+    StopTween(_G.Auto_Raid)
+end)
+
+Dungeon:Toggle("Auto Raid Hop",_G.Auto_Raid_Hop,function(vu)
+	_G.Auto_Raid_Hop = vu
+end)
+
+Dungeon:Toggle("Next Islands",_G.Next_Islands,function(vu)
+	_G.Next_Islands = vu
+    StopTween(_G.Next_Islands)
+end)
+if _G.Auto_Raid_Hop then
+end
+
+if type(_G.Select_Map) ~= 'string' then
+    _G.SelectChip = "Flame"
+end
+function Buy_Chip()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("RaidsNpc", "Select", _G.SelectChip)
+end
+spawn(function()
+	while wait(.5) do
+		pcall(function()
+			if _G.Auto_Raid then
+				if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
+					for i,v in pairs(game.Workspace.Enemies:GetDescendants()) do
+						if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+							repeat wait(.1)
+								sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+								v.Humanoid.Health = 0
+								v.HumanoidRootPart.CanCollide = false
+								v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+								v.HumanoidRootPart.Transparency = 0.5
+							until not _G.Auto_Raid or not v.Parent or v.Humanoid.Health <= 0
+						end
+					end
+				end
+			else
+				wait(3)
+			end
+		end)
+	end
+end)
+spawn(function()
+	while wait(.5) do
+		pcall(function()
+			if _G.Next_Islands then
+				if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5") then
+					for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
+						if v.Name == "Island 5" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2300 then
+							TP(v.CFrame*CFrame.new(0,70,0))
+						end
+					end
+				elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4") then
+					for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
+						if v.Name == "Island 4" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2000 then
+							TP(v.CFrame*CFrame.new(0,70,0))
+						end
+					end
+				elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3") then
+					for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
+						if v.Name == "Island 3" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2100 then
+							TP(v.CFrame*CFrame.new(0,70,0))
+						end
+					end
+				elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2") then
+					for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
+						if v.Name == "Island 2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2000 then
+							TP(v.CFrame*CFrame.new(0,10,0))
+						end
+					end
+				elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") then
+					for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
+						if v.Name == "Island 1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2000 then
+							TP(v.CFrame*CFrame.new(0,70,0))
+						end
+					end
+				else
+					wait(1)
+				end
+			else
+				wait(2)
+			end
+		end)
 	end
 end)
 
-BossedRaid:Toggle("Auto Kill Law Raid Boss", _G.BossRaid, function(brfunc)
-    _G.BossRaid = brfunc
-end)
 spawn(function()
-    while wait(.1) do
-        if _G.BossRaid then
+	while wait(2) do
+		pcall(function()
+			if _G.Auto_Raid_Farm then
+				if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then
+					_G.StopTween = true
+				elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
+					_G.StopTween = false
+				end
+			end
+		end)
+	end
+end)
+
+spawn(function()
+	while wait(.5) do
+		pcall(function()
+			if _G.Auto_Raid then
+				if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then
+					if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Special Microchip") then
+						_G.Auto_Raid_Farm = true
+						if Second_Sea then
+							fireclickdetector(game:GetService("Workspace").Map.CircleIsland.RaidSummon2.Button.Main.ClickDetector)
+							repeat wait(1)
+							until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true
+						elseif Third_Sea then
+							fireclickdetector(game:GetService("Workspace").Map["Boat Castle"].RaidSummon2.Button.Main.ClickDetector)
+							repeat wait(1)
+							until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true
+						end
+					else
+						if _G.Auto_Raid_Hop or _G.Melee_Hop then
+							_G.Have_Fruit = nil
+							Raid_FG()
+						end
+						Buy_Chip()
+						wait(1)
+						if _G.Auto_Raid_Hop and not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Special Microchip") and not game:GetService("Players").LocalPlayer.Character:FindFirstChild("Special Microchip") then
+							Hop()
+							wait(50)
+						elseif _G.Auto_Raid_Farm and not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Special Microchip") and not game:GetService("Players").LocalPlayer.Character:FindFirstChild("Special Microchip") then
+							_G.Stop_Tween = nil
+							_G.Auto_Raid_Farm = nil
+local AkaliNotif = loadstring(game:HttpGet("https://pst.klgrth.io/paste/kvtu4/raw"))();
+local Notify = AkaliNotif.Notify;
+
+wait(1);
+
+Notify({
+Description = "There are no devil fruits left.";
+Title = "ZEN HUB";
+Duration = 5;
+});
+						end
+					end
+				elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
+					repeat wait(1)
+					until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false
+					if _G.Auto_Awaken then
+						wait(2)
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Awakener","Check")
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Awakener","Awaken")
+					end
+				end
+			end
+		end)
+	end
+end)
+
+
+    Dungeon2:Toggle("Auto Awakener",_G.Auto_Awakener,function(value)
+        _G.Auto_Awakener = value
+    end)
+    
+    spawn(function()
+        pcall(function()
+            while wait(.1) do
+                if _G.Auto_Awakener then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Awakener","Check")
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Awakener","Awaken")
+                end
+            end
+        end)
+    end)
+end
+
+if Second_Sea or Third_Sea then
+    
+    Dungeon2:Dropdown("Select Chips",{"Flame","Ice","Quake","Light","Dark","String","Rumble","Magma","Human: Buddha","Sand","Bird: Phoenix","Dough"},function(value)
+        _G.SelectChip = value
+    end)
+                                                                                            
+    Dungeon2:Toggle("Auto Select Dungeon",_G.AutoSelectDungeon,function(value)
+        _G.AutoSelectDungeon = value
+    end)
+    
+    spawn(function()
+        while wait() do
+            if _G.AutoSelectDungeon then
+                pcall(function()
+                    if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Flame-Flame") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Flame-Flame") then
+                        _G.SelectChip = "Flame"
+                    elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Ice-Ice") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Ice-Ice") then
+                        _G.SelectChip = "Ice"
+                    elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Quake-Quake") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Quake-Quake") then
+                        _G.SelectChip = "Quake"
+                    elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Light-Light") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Light-Light") then
+                        _G.SelectChip = "Light"
+                    elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Dark-Dark") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Dark-Dark") then
+                        _G.SelectChip = "Dark"
+                    elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("String-String") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("String-String") then
+                        _G.SelectChip = "String"
+                    elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Rumble-Rumble") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Rumble-Rumble") then
+                        _G.SelectChip = "Rumble"
+                    elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Magma-Magma") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Magma-Magma") then
+                        _G.SelectChip = "Magma"
+                    elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Human-Human: Buddha Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Human-Human: Buddha Fruit") then
+                        _G.SelectChip = "Human: Buddha"
+                    elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Sand-Sand") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Sand-Sand") then
+                        _G.SelectChip = "Sand"
+                    elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Bird-Bird: Phoenix") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Bird-Bird: Phoenix") then
+                        _G.SelectChip = "Bird: Phoenix"
+                    elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("Dough") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Dough") then
+                        _G.SelectChip = "Dough"
+                    else
+                        _G.SelectChip = "Flame"
+                    end
+                end)
+            end
+        end
+    end)
+    
+    Dungeon2:Toggle("Auto Start Raid",_G.Auto_StartRaid,function(value)
+        _G.Auto_StartRaid = value
+    end)
+    
+    spawn(function()
+        while wait(.1) do
             pcall(function()
-                for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                    if v.Name == "Order [Lv. 1250] [Raid Boss]" then
-                        if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                            repeat task.wait(0.001)
-                                EquipTool(SelectWeapon)
-                                Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX, posY, posZ))
-                                v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                v.HumanoidRootPart.Transparency = 1
-                                v.Humanoid.JumpPower = 0
-                                v.Humanoid.WalkSpeed = 0
-                                v.HumanoidRootPart.CanCollide = false
-                                --v.Humanoid:ChangeState(11)
-                                --v.Humanoid:ChangeState(14)
-                                FarmPos = v.HumanoidRootPart.CFrame
-                                MonFarm = v.Name
-                                Click()
-                            until not _G.BossRaid or not v.Parent or v.Humanoid.Health <= 0 or not game.Workspace.Enemies:FindFirstChild(v.Name)
+                if _G.Auto_StartRaid then
+                    if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then
+                        if not game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Special Microchip") then
+                            if Second_Sea then
+                                fireclickdetector(game:GetService("Workspace").Map.CircleIsland.RaidSummon2.Button.Main.ClickDetector)
+                            elseif Third_Sea then
+                                fireclickdetector(game:GetService("Workspace").Map["Boat Castle"].RaidSummon2.Button.Main.ClickDetector)
+                            end
                         end
                     end
                 end
             end)
         end
+    end)
+    
+    Dungeon2:Button("Start Raid",function()
+        if Second_Sea then
+            fireclickdetector(game:GetService("Workspace").Map.CircleIsland.RaidSummon2.Button.Main.ClickDetector)
+        elseif Third_Sea then
+            fireclickdetector(game:GetService("Workspace").Map["Boat Castle"].RaidSummon2.Button.Main.ClickDetector)
+        end
+    end)
+
+    Dungeon2:Toggle("Auto Buy Chip",_G.AutoBuyChip,function(value)
+        _G.AutoBuyChip = value
+    end)
+    
+    spawn(function()
+        pcall(function()
+            while wait() do
+                if _G.AutoBuyChip then
+                    if not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Special Microchip") or not game:GetService("Players").LocalPlayer.Character:FindFirstChild("Special Microchip") then
+                        if not game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("RaidsNpc", "Select", _G.SelectChip)
+                        end
+                    end
+                end
+            end
+        end)
+    end)
+
+    Dungeon2:Button("Buy Chip Select",function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("RaidsNpc","Select",_G.SelectChip)
+    end)
+end
+
+if Second_Sea or Third_Sea then
+    Dungeon2:Button("Next Island",function()
+        pcall(function()
+            if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5") then
+                TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").CFrame*CFrame.new(0,70,100))
+            elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4") then
+                TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").CFrame*CFrame.new(0,70,100))
+            elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3") then
+                TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").CFrame*CFrame.new(0,70,100))
+            elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2") then
+                TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").CFrame*CFrame.new(0,70,100))
+            elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") then
+                TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").CFrame*CFrame.new(0,70,100))
+            end
+        end)
+    end)
+end
+
+    if Second_Sea then
+        Dungeon2:Button("Teleport to Lab",function()
+            TP(CFrame.new(-6438.73535, 250.645355, -4501.50684))
+            end)
+    elseif Third_Sea then
+        Dungeon2:Button("Teleport to Lab",function()
+            TP(CFrame.new(-5017.40869, 314.844055, -2823.0127, -0.925743818, 4.48217499e-08, -0.378151238, 4.55503146e-09, 1, 1.07377559e-07, 0.378151238, 9.7681621e-08, -0.925743818))
+        end)
     end
-end)
+
+    if Second_Sea then
+        Dungeon2:Button("Awakening Room",function()
+            TP(CFrame.new(266.227783, 1.39509034, 1857.00732))
+        end)
+    elseif Third_Sea then
+        Dungeon2:Button("Awakening Room",function()
+            TP(CFrame.new(-11571.440429688, 49.172668457031, -7574.7368164062))
+        end)
+    end
 
 
-BossedRaid:Toggle('Chest ESP', false, function(ce)
+Dungeon2:Toggle('Chest ESP', false, function(ce)
     ChestESP = ce
 end)
 spawn(function()
@@ -9605,7 +9865,7 @@ spawn(function()
     end
 end)
 
-BossedRaid:Toggle('Player ESP', false, function(pe)
+Dungeon2:Toggle('Player ESP', false, function(pe)
     PlayerESP = pe
 end)
 spawn(function()
@@ -9659,7 +9919,7 @@ spawn(function()
     end
 end)
 
-BossedRaid:Toggle('Devil Fruit ESP', _G.ESPDF, function(dfespf)
+Dungeon2:Toggle('Devil Fruit ESP', _G.ESPDF, function(dfespf)
     _G.ESPDF = dfespf
 end)
 spawn(function()
@@ -9708,7 +9968,7 @@ spawn(function()
     end
 end)
 
-BossedRaid:Toggle('Fruit ESP', false, function(fec)
+Dungeon2:Toggle('Fruit ESP', false, function(fec)
     FruitESPe = fec
 end)
 spawn(function()
@@ -9771,7 +10031,7 @@ spawn(function()
     end
 end)
 
-BossedRaid:Toggle('Island ESP', false, function(ies)
+Dungeon2:Toggle('Island ESP', false, function(ies)
     IslandESP = ies
 end)
 spawn(function()
@@ -9816,7 +10076,7 @@ spawn(function()
     end
 end)
 
-BossedRaid:Toggle('Npc ESP', false, function(nec)
+Dungeon2:Toggle('Npc ESP', false, function(nec)
     NpcESP = nec
 end)
 spawn(function()
