@@ -8606,7 +8606,7 @@ Teleport2:Toggle("Auto Mirage Island [HOP]",false,function(value)
   _G.MirageHop = value
   end)
 Teleport2:Toggle("Teleport To Gear[Beta]",false,function(value)
-  TP(game:GetService("Workspace").Map.MysticIsland:FindFirstChildOfClass("MeshPart").CFrame)
+  Tween(game:GetService("Workspace").Map.MysticIsland:FindFirstChildOfClass("MeshPart").CFrame)
 end)
 
 spawn(function()
@@ -9365,15 +9365,15 @@ if Second_Sea or Third_Sea then
                 if _G.Auto_Dungeon then
                   if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
                         if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5") then
-                            TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").CFrame*CFrame.new(0,80,100))
+                            Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").CFrame*CFrame.new(0,80,100))
                         elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4") then
-                            TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").CFrame*CFrame.new(0,80,100))
+                            Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").CFrame*CFrame.new(0,80,100))
                         elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3") then
-                            TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").CFrame*CFrame.new(0,80,100))
+                            Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").CFrame*CFrame.new(0,80,100))
                         elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2") then
-                            TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").CFrame*CFrame.new(0,80,100))
+                            Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").CFrame*CFrame.new(0,80,100))
                         elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") then
-                            TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").CFrame*CFrame.new(0,80,100))
+                            Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").CFrame*CFrame.new(0,80,100))
                         end
                     end
                 end
@@ -9548,31 +9548,31 @@ spawn(function()
 				if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5") then
 					for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
 						if v.Name == "Island 5" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2300 then
-							TP(v.CFrame*CFrame.new(0,70,0))
+							Tween(v.CFrame*CFrame.new(0,70,0))
 						end
 					end
 				elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4") then
 					for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
 						if v.Name == "Island 4" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2000 then
-							TP(v.CFrame*CFrame.new(0,70,0))
+							Tween(v.CFrame*CFrame.new(0,70,0))
 						end
 					end
 				elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3") then
 					for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
 						if v.Name == "Island 3" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2100 then
-							TP(v.CFrame*CFrame.new(0,70,0))
+							Tween(v.CFrame*CFrame.new(0,70,0))
 						end
 					end
 				elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2") then
 					for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
 						if v.Name == "Island 2" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2000 then
-							TP(v.CFrame*CFrame.new(0,10,0))
+							Tween(v.CFrame*CFrame.new(0,10,0))
 						end
 					end
 				elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") then
 					for i,v in pairs(game:GetService("Workspace")["_WorldOrigin"].Locations:GetChildren()) do
 						if v.Name == "Island 1" and (v.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 2000 then
-							TP(v.CFrame*CFrame.new(0,70,0))
+							Tween(v.CFrame*CFrame.new(0,70,0))
 						end
 					end
 				else
@@ -9774,15 +9774,15 @@ if Second_Sea or Third_Sea then
     Dungeon2:Button("Next Island",function()
         pcall(function()
             if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5") then
-                TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").CFrame*CFrame.new(0,70,100))
+                Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 5").CFrame*CFrame.new(0,70,100))
             elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4") then
-                TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").CFrame*CFrame.new(0,70,100))
+                Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 4").CFrame*CFrame.new(0,70,100))
             elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3") then
-                TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").CFrame*CFrame.new(0,70,100))
+                Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 3").CFrame*CFrame.new(0,70,100))
             elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2") then
-                TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").CFrame*CFrame.new(0,70,100))
+                Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 2").CFrame*CFrame.new(0,70,100))
             elseif game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") then
-                TP(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").CFrame*CFrame.new(0,70,100))
+                Tween(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").CFrame*CFrame.new(0,70,100))
             end
         end)
     end)
@@ -9790,21 +9790,21 @@ end
 
     if Second_Sea then
         Dungeon2:Button("Teleport to Lab",function()
-            TP(CFrame.new(-6438.73535, 250.645355, -4501.50684))
+            Tween(CFrame.new(-6438.73535, 250.645355, -4501.50684))
             end)
     elseif Third_Sea then
         Dungeon2:Button("Teleport to Lab",function()
-            TP(CFrame.new(-5017.40869, 314.844055, -2823.0127, -0.925743818, 4.48217499e-08, -0.378151238, 4.55503146e-09, 1, 1.07377559e-07, 0.378151238, 9.7681621e-08, -0.925743818))
+            Tween(CFrame.new(-5017.40869, 314.844055, -2823.0127, -0.925743818, 4.48217499e-08, -0.378151238, 4.55503146e-09, 1, 1.07377559e-07, 0.378151238, 9.7681621e-08, -0.925743818))
         end)
     end
 
     if Second_Sea then
         Dungeon2:Button("Awakening Room",function()
-            TP(CFrame.new(266.227783, 1.39509034, 1857.00732))
+            Tween(CFrame.new(266.227783, 1.39509034, 1857.00732))
         end)
     elseif Third_Sea then
         Dungeon2:Button("Awakening Room",function()
-            TP(CFrame.new(-11571.440429688, 49.172668457031, -7574.7368164062))
+            Tween(CFrame.new(-11571.440429688, 49.172668457031, -7574.7368164062))
         end)
     end
 
