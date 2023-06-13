@@ -1,4 +1,4 @@
-5local G2L = {};
+local G2L = {};
 
 loadedkey = loadstring(game:HttpGet("https://raw.githubusercontent.com/zenhubzen/bfsource/main/Saki%20Key", true))()
 
